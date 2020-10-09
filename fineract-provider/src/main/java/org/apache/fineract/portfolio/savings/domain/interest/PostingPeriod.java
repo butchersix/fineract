@@ -279,17 +279,17 @@ public final class PostingPeriod {
                 }
             break;
             case WEEKLY:
-                final LocalDate postingPeriodEndDate = postingPeriodInterval.endDate();
+                final LocalDate wPostingPeriodEndDate = postingPeriodInterval.endDate();
 
                 periodStartDate = postingPeriodInterval.startDate();
                 periodEndDate = periodStartDate;
 
-                while (!periodStartDate.isAfter(postingPeriodEndDate) && !periodEndDate.isAfter(postingPeriodEndDate)) {
+                while (!periodStartDate.isAfter(wPostingPeriodEndDate) && !periodEndDate.isAfter(wPostingPeriodEndDate)) {
 
                     periodEndDate = determineInterestPeriodEndDateFrom(periodStartDate, interestPeriodType, upToInterestCalculationDate,
                             financialYearBeginningMonth);
-                    if (periodEndDate.isAfter(postingPeriodEndDate)) {
-                        periodEndDate = postingPeriodEndDate;
+                    if (periodEndDate.isAfter(wPostingPeriodEndDate)) {
+                        periodEndDate = wPostingPeriodEndDate;
                     }
 
                     final LocalDateInterval compoundingPeriodInterval = LocalDateInterval.create(periodStartDate, periodEndDate);
@@ -305,17 +305,17 @@ public final class PostingPeriod {
                 }
             break;
             case BIWEEKLY:
-                final LocalDate postingPeriodEndDate = postingPeriodInterval.endDate();
+                final LocalDate bwPostingPeriodEndDate = postingPeriodInterval.endDate();
 
                 periodStartDate = postingPeriodInterval.startDate();
                 periodEndDate = periodStartDate;
 
-                while (!periodStartDate.isAfter(postingPeriodEndDate) && !periodEndDate.isAfter(postingPeriodEndDate)) {
+                while (!periodStartDate.isAfter(bwPostingPeriodEndDate) && !periodEndDate.isAfter(bwPostingPeriodEndDate)) {
 
                     periodEndDate = determineInterestPeriodEndDateFrom(periodStartDate, interestPeriodType, upToInterestCalculationDate,
                             financialYearBeginningMonth);
-                    if (periodEndDate.isAfter(postingPeriodEndDate)) {
-                        periodEndDate = postingPeriodEndDate;
+                    if (periodEndDate.isAfter(bwPostingPeriodEndDate)) {
+                        periodEndDate = bwPostingPeriodEndDate;
                     }
 
                     final LocalDateInterval compoundingPeriodInterval = LocalDateInterval.create(periodStartDate, periodEndDate);
