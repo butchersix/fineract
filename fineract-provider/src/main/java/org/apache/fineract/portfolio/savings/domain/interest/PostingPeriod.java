@@ -281,8 +281,8 @@ public final class PostingPeriod {
             case WEEKLY:
                 final LocalDate postingPeriodEndDate = postingPeriodInterval.endDate();
 
-                LocalDate periodStartDate = postingPeriodInterval.startDate();
-                LocalDate periodEndDate = periodStartDate;
+                periodStartDate = postingPeriodInterval.startDate();
+                periodEndDate = periodStartDate;
 
                 while (!periodStartDate.isAfter(postingPeriodEndDate) && !periodEndDate.isAfter(postingPeriodEndDate)) {
 
@@ -307,8 +307,8 @@ public final class PostingPeriod {
             case BIWEEKLY:
                 final LocalDate postingPeriodEndDate = postingPeriodInterval.endDate();
 
-                LocalDate periodStartDate = postingPeriodInterval.startDate();
-                LocalDate periodEndDate = periodStartDate;
+                periodStartDate = postingPeriodInterval.startDate();
+                periodEndDate = periodStartDate;
 
                 while (!periodStartDate.isAfter(postingPeriodEndDate) && !periodEndDate.isAfter(postingPeriodEndDate)) {
 
