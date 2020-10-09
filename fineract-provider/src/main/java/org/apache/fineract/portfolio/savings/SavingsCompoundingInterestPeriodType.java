@@ -30,8 +30,8 @@ public enum SavingsCompoundingInterestPeriodType {
 
     INVALID(0, "savingsCompoundingInterestPeriodType.invalid"), //
     DAILY(1, "savingsCompoundingInterestPeriodType.daily"), //
-    // WEEKLY(2, "savingsCompoundingInterestPeriodType.weekly"), //
-    // BIWEEKLY(3, "savingsCompoundingInterestPeriodType.biweekly"), //
+    WEEKLY(2, "savingsCompoundingInterestPeriodType.weekly"), //
+    BIWEEKLY(3, "savingsCompoundingInterestPeriodType.biweekly"), //
     MONTHLY(4, "savingsCompoundingInterestPeriodType.monthly"),
 
     QUATERLY(5, "savingsCompoundingInterestPeriodType.quarterly"), //
@@ -76,12 +76,10 @@ public enum SavingsCompoundingInterestPeriodType {
                     repaymentFrequencyType = SavingsCompoundingInterestPeriodType.DAILY;
                 break;
                 case 2:
-                // repaymentFrequencyType =
-                // SavingsCompoundingInterestPeriodType.WEEKLY;
+                    repaymentFrequencyType = SavingsCompoundingInterestPeriodType.WEEKLY;
                 break;
                 case 3:
-                // repaymentFrequencyType =
-                // SavingsCompoundingInterestPeriodType.BIWEEKLY;
+                    repaymentFrequencyType = SavingsCompoundingInterestPeriodType.BIWEEKLY;
                 break;
                 case 4:
                     repaymentFrequencyType = SavingsCompoundingInterestPeriodType.MONTHLY;

@@ -278,10 +278,58 @@ public final class PostingPeriod {
                     periodStartDate = periodEndDate.plusDays(1);
                 }
             break;
-            // case WEEKLY:
-            // break;
-            // case BIWEEKLY:
-            // break;
+            case WEEKLY:
+                final LocalDate postingPeriodEndDate = postingPeriodInterval.endDate();
+
+                LocalDate periodStartDate = postingPeriodInterval.startDate();
+                LocalDate periodEndDate = periodStartDate;
+
+                while (!periodStartDate.isAfter(postingPeriodEndDate) && !periodEndDate.isAfter(postingPeriodEndDate)) {
+
+                    periodEndDate = determineInterestPeriodEndDateFrom(periodStartDate, interestPeriodType, upToInterestCalculationDate,
+                            financialYearBeginningMonth);
+                    if (periodEndDate.isAfter(postingPeriodEndDate)) {
+                        periodEndDate = postingPeriodEndDate;
+                    }
+
+                    final LocalDateInterval compoundingPeriodInterval = LocalDateInterval.create(periodStartDate, periodEndDate);
+                    if (postingPeriodInterval.contains(compoundingPeriodInterval)) {
+
+                        compoundingPeriod = WeeklyCompoundingPeriod.create(compoundingPeriodInterval, allEndOfDayBalances,
+                                upToInterestCalculationDate);
+                        compoundingPeriods.add(compoundingPeriod);
+                    }
+
+                    // move periodStartDate forward to day after this period
+                    periodStartDate = periodEndDate.plusDays(1);
+                }
+            break;
+            case BIWEEKLY:
+                final LocalDate postingPeriodEndDate = postingPeriodInterval.endDate();
+
+                LocalDate periodStartDate = postingPeriodInterval.startDate();
+                LocalDate periodEndDate = periodStartDate;
+
+                while (!periodStartDate.isAfter(postingPeriodEndDate) && !periodEndDate.isAfter(postingPeriodEndDate)) {
+
+                    periodEndDate = determineInterestPeriodEndDateFrom(periodStartDate, interestPeriodType, upToInterestCalculationDate,
+                            financialYearBeginningMonth);
+                    if (periodEndDate.isAfter(postingPeriodEndDate)) {
+                        periodEndDate = postingPeriodEndDate;
+                    }
+
+                    final LocalDateInterval compoundingPeriodInterval = LocalDateInterval.create(periodStartDate, periodEndDate);
+                    if (postingPeriodInterval.contains(compoundingPeriodInterval)) {
+
+                        compoundingPeriod = BiWeeklyCompoundingPeriod.create(compoundingPeriodInterval, allEndOfDayBalances,
+                                upToInterestCalculationDate);
+                        compoundingPeriods.add(compoundingPeriod);
+                    }
+
+                    // move periodStartDate forward to day after this period
+                    periodStartDate = periodEndDate.plusDays(1);
+                }
+            break;
             case QUATERLY:
                 final LocalDate qPostingPeriodEndDate = postingPeriodInterval.endDate();
 
@@ -383,14 +431,13 @@ public final class PostingPeriod {
             case DAILY:
                 periodEndDate = periodStartDate;
             break;
-            // case WEEKLY:
-            // periodEndDate = periodStartDate.dayOfWeek().withMaximumValue();
-            // break;
-            // case BIWEEKLY:
-            // final LocalDate closestEndOfWeek =
-            // periodStartDate.dayOfWeek().withMaximumValue();
-            // periodEndDate = closestEndOfWeek.plusWeeks(1);
-            // break;
+            case WEEKLY:
+                periodEndDate = periodStartDate.dayOfWeek().withMaximumValue();
+            break;
+            case BIWEEKLY:
+                final LocalDate closestEndOfWeek = periodStartDate.dayOfWeek().withMaximumValue();
+                periodEndDate = closestEndOfWeek.plusWeeks(1);
+            break;
             case MONTHLY:
                 // produce period end date on last day of current month
                 periodEndDate = periodStartDate.dayOfMonth().withMaximumValue();

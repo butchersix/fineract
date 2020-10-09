@@ -28,19 +28,19 @@ import org.apache.fineract.portfolio.savings.SavingsCompoundingInterestPeriodTyp
 import org.apache.fineract.portfolio.savings.SavingsInterestCalculationType;
 import org.joda.time.LocalDate;
 
-public final class AnnualCompoundingPeriod implements CompoundingPeriod {
+public final class WeeklyCompoundingPeriod implements CompoundingPeriod {
 
     @SuppressWarnings("unused")
     private final LocalDateInterval periodInterval;
     private final List<EndOfDayBalance> endOfDayBalances;
 
-    public static AnnualCompoundingPeriod create(final LocalDateInterval periodInterval, final List<EndOfDayBalance> allEndOfDayBalances,
+    public static WeeklyCompoundingPeriod create(final LocalDateInterval periodInterval, final List<EndOfDayBalance> allEndOfDayBalances,
             final LocalDate upToInterestCalculationDate) {
 
         final List<EndOfDayBalance> endOfDayBalancesWithinPeriod = endOfDayBalancesWithinPeriodInterval(periodInterval, allEndOfDayBalances,
                 upToInterestCalculationDate);
 
-        return new AnnualCompoundingPeriod(periodInterval, endOfDayBalancesWithinPeriod);
+        return new WeeklyCompoundingPeriod(periodInterval, endOfDayBalancesWithinPeriod);
     }
 
     @Override
@@ -130,29 +130,23 @@ public final class AnnualCompoundingPeriod implements CompoundingPeriod {
                     interestOnBalanceUnrounded = balance.calculateInterestOnBalance(interestToCompound, interestRateAsFraction, daysInYear,
                             minBalanceForInterestCalculation, overdraftInterestRateAsFraction, minOverdraftForInterestCalculation);
                 break;
-                case QUATERLY:
-                    interestOnBalanceUnrounded = balance.calculateInterestOnBalance(interestToCompound, interestRateAsFraction, daysInYear,
-                            minBalanceForInterestCalculation, overdraftInterestRateAsFraction, minOverdraftForInterestCalculation);
-                break;
+                // case QUATERLY:
+                // break;
                 case WEEKLY:
                     interestOnBalanceUnrounded = balance.calculateInterestOnBalance(interestToCompound, interestRateAsFraction, daysInYear,
                             minBalanceForInterestCalculation, overdraftInterestRateAsFraction, minOverdraftForInterestCalculation);
                 break;
-                case BIWEEKLY:
-                    interestOnBalanceUnrounded = balance.calculateInterestOnBalance(interestToCompound, interestRateAsFraction, daysInYear,
-                            minBalanceForInterestCalculation, overdraftInterestRateAsFraction, minOverdraftForInterestCalculation);
-                break;
-                case BI_ANNUAL:
-                    interestOnBalanceUnrounded = balance.calculateInterestOnBalance(interestToCompound, interestRateAsFraction, daysInYear,
-                            minBalanceForInterestCalculation, overdraftInterestRateAsFraction, minOverdraftForInterestCalculation);
-                break;
-                case ANNUAL:
-                    interestOnBalanceUnrounded = balance.calculateInterestOnBalance(interestToCompound, interestRateAsFraction, daysInYear,
-                            minBalanceForInterestCalculation, overdraftInterestRateAsFraction, minOverdraftForInterestCalculation);
-                break;
+                // case BIWEEKLY:
+                // break;
+                // case BI_ANNUAL:
+                // break;
+                // case ANNUAL:
+                // break;
                 // case NO_COMPOUNDING_SIMPLE_INTEREST:
                 // break;
                 case INVALID:
+                break;
+                default:
                 break;
             }
 
@@ -180,7 +174,7 @@ public final class AnnualCompoundingPeriod implements CompoundingPeriod {
         return endOfDayBalancesForPeriodInterval;
     }
 
-    private AnnualCompoundingPeriod(final LocalDateInterval periodInterval, final List<EndOfDayBalance> endOfDayBalances) {
+    private WeeklyCompoundingPeriod(final LocalDateInterval periodInterval, final List<EndOfDayBalance> endOfDayBalances) {
         this.periodInterval = periodInterval;
         this.endOfDayBalances = endOfDayBalances;
     }
