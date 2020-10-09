@@ -404,11 +404,11 @@ public final class SavingsEnumerations {
             break;
             case WEEKLY:
                 optionData = new EnumOptionData(SavingsCompoundingInterestPeriodType.WEEKLY.getValue().longValue(),
-                    codePrefix + SavingsCompoundingInterestPeriodType.WEEKLY.getCode(), "Weekly");
+                        codePrefix + SavingsCompoundingInterestPeriodType.WEEKLY.getCode(), "Weekly");
             break;
             case BIWEEKLY:
                 optionData = new EnumOptionData(SavingsCompoundingInterestPeriodType.BIWEEKLY.getValue().longValue(),
-                    codePrefix + SavingsCompoundingInterestPeriodType.BIWEEKLY.getCode(), "Bi-Weekly");
+                        codePrefix + SavingsCompoundingInterestPeriodType.BIWEEKLY.getCode(), "Bi-Weekly");
             break;
             case MONTHLY:
                 optionData = new EnumOptionData(SavingsCompoundingInterestPeriodType.MONTHLY.getValue().longValue(),
