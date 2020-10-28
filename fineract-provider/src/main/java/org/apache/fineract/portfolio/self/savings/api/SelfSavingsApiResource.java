@@ -203,6 +203,18 @@ public class SelfSavingsApiResource {
         return this.savingsAccountsApiResource.update(accountId, apiRequestBodyAsJson, commandParam);
     }
 
+    @POST
+    @Path("{accountId}/transactions")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    public String makeTransaction(@PathParam("accountId") final Long accountId,
+            @QueryParam("command") final String commandParam, final String apiRequestBodyAsJson) {
+
+        validateAppuserSavingsAccountMapping(accountId);
+        this.dataValidator.validateSavingsApplication(apiRequestBodyAsJson);
+        return this.savingsAccountTransactionsApiResource.transaction(accountId, apiRequestBodyAsJson, commandParam);
+    }
+
     private void validateAppuserClientsMapping(final Long clientId) {
         AppUser user = this.context.authenticatedUser();
         final boolean mappedClientId = this.appUserClientMapperReadService.isClientMappedToUser(clientId, user.getId());
