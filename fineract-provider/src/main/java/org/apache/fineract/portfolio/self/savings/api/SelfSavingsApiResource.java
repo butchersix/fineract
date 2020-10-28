@@ -211,7 +211,6 @@ public class SelfSavingsApiResource {
             final String apiRequestBodyAsJson) {
 
         validateAppuserSavingsAccountMapping(accountId);
-        this.dataValidator.validateSavingsApplication(apiRequestBodyAsJson);
         return this.savingsAccountTransactionsApiResource.transaction(accountId, commandParam, apiRequestBodyAsJson);
     }
 
