@@ -212,7 +212,7 @@ public class SelfSavingsApiResource {
 
         validateAppuserSavingsAccountMapping(accountId);
         this.dataValidator.validateSavingsApplication(apiRequestBodyAsJson);
-        return this.savingsAccountTransactionsApiResource.transaction(accountId, apiRequestBodyAsJson, commandParam);
+        return this.savingsAccountTransactionsApiResource.transaction(accountId, commandParam, apiRequestBodyAsJson);
     }
 
     private void validateAppuserClientsMapping(final Long clientId) {
