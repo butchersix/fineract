@@ -202,7 +202,7 @@
             <beans:property name="refreshTokenValiditySeconds"
                 value="86400" />
             <beans:property name="accessTokenValiditySeconds"
-                value="3600" />
+                value="86400" />
         </beans:bean>
 
         <beans:bean id="userApprovalHandler"

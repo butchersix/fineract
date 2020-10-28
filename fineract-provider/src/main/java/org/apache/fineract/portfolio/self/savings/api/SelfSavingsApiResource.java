@@ -207,8 +207,8 @@ public class SelfSavingsApiResource {
     @Path("{accountId}/transactions")
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public String makeTransaction(@PathParam("accountId") final Long accountId,
-            @QueryParam("command") final String commandParam, final String apiRequestBodyAsJson) {
+    public String makeTransaction(@PathParam("accountId") final Long accountId, @QueryParam("command") final String commandParam,
+            final String apiRequestBodyAsJson) {
 
         validateAppuserSavingsAccountMapping(accountId);
         this.dataValidator.validateSavingsApplication(apiRequestBodyAsJson);
