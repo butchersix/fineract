@@ -33,7 +33,8 @@ services:
       timeout: 10s
       retries: 10
     ports:
-      - "127.0.0.1:3306:3306"
+      - "3306:3306"
+
   fineract-server:
     build:
       context: .

@@ -7,7 +7,7 @@
 ##############################################################################
 
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
-DEFAULT_JVM_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8005,server=y,suspend=n"
+DEFAULT_JVM_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8006,server=y,suspend=n"
 
 CATALINA_OPTS="-Xms512m -Xmx2048m"
 JAVA_OPTS="-Xms512m -Xmx2048m"
