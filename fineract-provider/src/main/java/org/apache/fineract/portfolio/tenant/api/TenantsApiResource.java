@@ -76,6 +76,8 @@ public class TenantsApiResource {
                 String dbUid = getEnvVar("FINERACT_DEFAULT_TENANTDB_UID", "root");
                 String dbPwd = getEnvVar("FINERACT_DEFAULT_TENANTDB_PWD", "mysql");
 
+                LOG.info("url: {}, username: {}, password: {}", dbUrl, dbUid, dbPwd);
+
                 // SQL command to create a database in MySQL.
                 String sql = "CREATE DATABASE IF NOT EXISTS " + params.get("schema_name");
 
