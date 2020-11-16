@@ -69,6 +69,8 @@ public class TenantsApiResource {
         if (isIncomplete(Arrays.asList("schema_name"))) {
             // TODO
             LOG.error("TenantsApiResource:createDatabase - Invalid schema_name");
+            return new ResponseEntity<Object>(renderJsonResponse("404", "Invalid schema_name"),
+                        HttpStatus.NOT_FOUND);
         } else {
             try {
                 // TODO: create tenant database
