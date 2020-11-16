@@ -69,13 +69,13 @@ public class TenantsApiResource {
         if (isIncomplete(Arrays.asList("schema_name"))) {
             // TODO
             LOG.error("TenantsApiResource:createDatabase - Invalid schema_name");
-            return new ResponseEntity<Object>(renderJsonResponse("404", "Invalid schema_name"),
+            return new ResponseEntity<Object>("Invalid schema_name",
                         HttpStatus.NOT_FOUND);
         } else {
             try {
                 // TODO: create tenant database
 
-                String dbUrl = "jdbc:mysql:thin://localhost:3306";
+                String dbUrl = "jdbc:mysql://localhost:3306";
                 String dbUid = getEnvVar("FINERACT_DEFAULT_TENANTDB_UID", "root");
                 String dbPwd = getEnvVar("FINERACT_DEFAULT_TENANTDB_PWD", "mysql");
 
@@ -87,13 +87,13 @@ public class TenantsApiResource {
 
                 stmt.execute();
 
-                return new ResponseEntity<Object>(renderJsonResponse("200", "Tenant database successfully created"),
+                return new ResponseEntity<Object>("Tenant database successfully created",
                         HttpStatus.OK);
 
             } catch (Exception e) {
                 LOG.error("TenantsApiResource:createDatabase - Exception: {}", e.getMessage());
                 e.printStackTrace();
-                return new ResponseEntity<Object>(renderJsonResponse("500", "Error in logging in."), HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Object>("An error has occured.", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }
