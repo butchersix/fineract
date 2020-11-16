@@ -75,7 +75,7 @@ public class TenantsApiResource {
             try {
                 // TODO: create tenant database
 
-                String dbUrl = getEnvVar("fineract_tenants_url", "jdbc:mysql:thin://localhost:3306/fineract_tenants");
+                String dbUrl = "jdbc:mysql:thin://localhost:3306";
                 String dbUid = getEnvVar("FINERACT_DEFAULT_TENANTDB_UID", "root");
                 String dbPwd = getEnvVar("FINERACT_DEFAULT_TENANTDB_PWD", "mysql");
 
