@@ -28,8 +28,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.util.Map;
+import java.util.Arrays;
 import org.apache.fineract.infrastructure.core.serialization.DefaultToApiJsonSerializer;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.fineract.infrastructure.security.service.PlatformSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -41,6 +46,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Component
 @Scope("singleton")
 public class TenantsApiResource {
+
+    private static final Logger LOG = LoggerFactory.getLogger(TenantsApiResource.class);
 
     private final PlatformSecurityContext context;
     private final DefaultToApiJsonSerializer toApiJsonSerializer;
@@ -70,7 +77,7 @@ public class TenantsApiResource {
                 String dbPwd = getEnvVar("FINERACT_DEFAULT_TENANTDB_PWD", "mysql");
 
                 // SQL command to create a database in MySQL.
-                String sql = "CREATE DATABASE IF NOT EXISTS " + database;
+                String sql = "CREATE DATABASE IF NOT EXISTS " + params.get("schema_name");
 
                 Connection conn = DriverManager.getConnection(dbUrl, dbUid, dbPwd);
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -110,17 +117,6 @@ public class TenantsApiResource {
             return defaultValue;
         }
         return value;
-    }
-
-    @POST
-    @Path("{accountId}/transactions")
-    @Consumes({ MediaType.APPLICATION_JSON })
-    @Produces({ MediaType.APPLICATION_JSON })
-    public String makeTransaction(@PathParam("accountId") final Long accountId, @QueryParam("command") final String commandParam,
-            final String apiRequestBodyAsJson) {
-
-        validateAppuserSavingsAccountMapping(accountId);
-        return this.savingsAccountTransactionsApiResource.transaction(accountId, commandParam, apiRequestBodyAsJson);
     }
 
 }
