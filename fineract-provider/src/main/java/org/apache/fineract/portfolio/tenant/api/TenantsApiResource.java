@@ -67,8 +67,7 @@ public class TenantsApiResource {
         if (isIncomplete(Arrays.asList("schema_name"))) {
             // TODO
             LOG.error("TenantsApiResource:createDatabase - Invalid schema_name");
-            return new ResponseEntity<Object>("Invalid schema_name",
-                        HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Object>("Invalid schema_name", HttpStatus.NOT_FOUND);
         } else {
             try {
                 // TODO: create tenant database
@@ -85,8 +84,7 @@ public class TenantsApiResource {
 
                 stmt.execute();
 
-                return new ResponseEntity<Object>("Tenant database successfully created",
-                        HttpStatus.OK);
+                return new ResponseEntity<Object>("Tenant database successfully created", HttpStatus.OK);
 
             } catch (Exception e) {
                 LOG.error("TenantsApiResource:createDatabase - Exception: {}", e.getMessage());
