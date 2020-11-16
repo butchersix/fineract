@@ -30,6 +30,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.Map;
 import java.util.Arrays;
+import java.util.List;
 import org.apache.fineract.infrastructure.core.serialization.DefaultToApiJsonSerializer;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -63,7 +64,7 @@ public class TenantsApiResource {
     @Path("create")
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
-    public void createDatabase(@RequestBody Map<String, String> params) {
+    public ResponseEntity createDatabase(@RequestBody Map<String, String> params) {
 
         if (isIncomplete(Arrays.asList("schema_name"))) {
             // TODO
@@ -85,7 +86,7 @@ public class TenantsApiResource {
                 stmt.execute();
 
                 return new ResponseEntity<Object>(renderJsonResponse("200", "Tenant database successfully created"),
-                        HttpStatus.INTERNAL_SERVER_ERROR);
+                        HttpStatus.OK);
 
             } catch (Exception e) {
                 LOG.error("TenantsApiResource:createDatabase - Exception: {}", e.getMessage());
