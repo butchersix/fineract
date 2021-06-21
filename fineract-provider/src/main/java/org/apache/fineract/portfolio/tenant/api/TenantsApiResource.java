@@ -94,7 +94,11 @@ public class TenantsApiResource {
                 String defaultParams = params.get("params").toString();
                 String username = params.get("username").toString();
                 String password = params.get("password").toString();
-                String dbUrl = getEnvVar("PROTOCOL", "jdbc") + ":mysql://localhost:3306/fineract_" + identifier + defaultParams;
+                String dbUrl = String.format("%s:%s://%s:%s/fineract_%s%s", getEnvVar("PROTOCOL", "jdbc"), 
+                        getEnvVar("SUB_PROTOCOL", "mysql"), 
+                        getEnvVar("FINERACT_DEFAULT_TENANTDB_HOSTNAME", "fineractmysql"), 
+                        getEnvVar("FINERACT_DEFAULT_TENANTDB_PORT", "3306"), 
+                        identifier, defaultParams);
                 String dbUid = username;
                 String dbPwd = password;
 
