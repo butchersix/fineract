@@ -67,6 +67,7 @@ dependencies {
             'org.apache.tika:tika-core',
 
             'org.drizzle.jdbc:drizzle-jdbc',
+            'mysql:mysql-connector-java',
             'org.flywaydb:flyway-core',
 
             'com.github.librepdf:openpdf',
