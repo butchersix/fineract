@@ -17,4 +17,4 @@
 -- under the License.
 --
 
-ALTER TABLE oauth_access_token ADD CONSTRAINT U_authentication_id UNIQUE (authentication_id);
+ALTER TABLE `oauth_access_token` ADD CONSTRAINT `U_authentication_id` UNIQUE (`authentication_id`);
