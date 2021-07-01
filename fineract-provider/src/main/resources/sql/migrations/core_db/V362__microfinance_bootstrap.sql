@@ -17,8 +17,8 @@
 -- under the License.
 --
 
-INSERT INTO `m_organisation_currency` (`id`, `code`, `decimal_places`, `name`, `display_symbol`, `internationalized_name_code`)
-VALUES (23,'PHP',2,'Philippine Peso','₱','currency.PHP');
+INSERT INTO `m_organisation_currency` (`code`, `decimal_places`, `name`, `display_symbol`, `internationalized_name_code`)
+VALUES ('PHP',2,'Philippine Peso','₱','currency.PHP');
 
 INSERT INTO `m_code_value` (`id`, `code_id`, `code_value`, `code_description`, `order_position`, `code_score`, `is_active`, `is_mandatory`)
 VALUES (15,14,'Client Close Reason',NULL,0,NULL,1,0);
